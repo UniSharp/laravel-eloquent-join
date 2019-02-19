@@ -13,6 +13,33 @@ class CreateDatabase extends Migration
      */
     public function up()
     {
+        Schema::create('categories', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name')->nullable();
+
+            $table->timestamps();
+            $table->softDeletes();
+        });
+
+        Schema::create('categorizable', function (Blueprint $table) {
+            $table->increments('id');
+            $table->unsignedInteger('category_id')->nullable();
+            $table->morphs('categorizable');
+
+            $table->foreign('category_id')->references('id')->on('categories');
+
+            $table->timestamps();
+            $table->softDeletes();
+        });
+
+        Schema::create('images', function (Blueprint $table) {
+            $table->increments('id');
+            $table->morphs('imageable');
+
+            $table->timestamps();
+            $table->softDeletes();
+        });
+
         Schema::create('states', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name')->nullable();

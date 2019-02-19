@@ -7,6 +7,9 @@ use Fico7489\Laravel\EloquentJoin\Exceptions\InvalidRelation;
 use Fico7489\Laravel\EloquentJoin\Exceptions\InvalidRelationClause;
 use Fico7489\Laravel\EloquentJoin\Exceptions\InvalidRelationGlobalScope;
 use Fico7489\Laravel\EloquentJoin\Exceptions\InvalidRelationWhere;
+use Fico7489\Laravel\EloquentJoin\Relations\MorphManyJoin;
+use Fico7489\Laravel\EloquentJoin\Relations\MorphToJoin;
+use Fico7489\Laravel\EloquentJoin\Relations\MorphToManyJoin;
 use Illuminate\Database\Eloquent\Builder;
 use Fico7489\Laravel\EloquentJoin\Relations\BelongsToJoin;
 use Fico7489\Laravel\EloquentJoin\Relations\HasOneJoin;
@@ -14,6 +17,7 @@ use Fico7489\Laravel\EloquentJoin\Relations\HasManyJoin;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Illuminate\Database\Query\JoinClause;
+use function PHPSTORM_META\type;
 
 class EloquentJoinBuilder extends Builder
 {
@@ -199,7 +203,7 @@ class EloquentJoinBuilder extends Builder
 
                         $this->joinQuery($join, $relatedRelation, $relatedTableAlias);
                     });
-                } elseif ($relatedRelation instanceof HasOneJoin  ||  $relatedRelation instanceof HasManyJoin) {
+                } elseif ($relatedRelation instanceof HasOneJoin || $relatedRelation instanceof HasManyJoin) {
                     $relatedKey = $relatedRelation->getQualifiedForeignKeyName();
                     $relatedKey = last(explode('.', $relatedKey));
                     $localKey = $relatedRelation->getQualifiedParentKeyName();
@@ -207,6 +211,47 @@ class EloquentJoinBuilder extends Builder
 
                     $this->$joinMethod($joinQuery, function ($join) use ($relatedRelation, $relatedTableAlias, $relatedKey, $currentTableAlias, $localKey) {
                         $join->on($relatedTableAlias.'.'.$relatedKey, '=', $currentTableAlias.'.'.$localKey);
+
+                        $this->joinQuery($join, $relatedRelation, $relatedTableAlias);
+                    });
+                } elseif ($relatedRelation instanceof MorphManyJoin) {
+                    $relatedKey = $relatedRelation->getQualifiedForeignKeyName();
+                    $relatedKey = last(explode('.', $relatedKey));
+                    $localKey = $relatedRelation->getQualifiedParentKeyName();
+                    $localKey = last(explode('.', $localKey));
+                    $morphType = $relatedRelation->getMorphType();
+                    $morphClass = $relatedRelation->getMorphClass();
+
+                    $this->$joinMethod($joinQuery, function ($join) use ($relatedRelation, $relatedTableAlias, $relatedKey, $currentTableAlias, $localKey, $morphType, $morphClass) {
+                        $join->on($relatedTableAlias.'.'.$relatedKey, '=', $currentTableAlias.'.'.$localKey)
+                             ->where($relatedTableAlias.'.'.$morphType, $morphClass);
+
+                        $this->joinQuery($join, $relatedRelation, $relatedTableAlias);
+                    });
+                } elseif ($relatedRelation instanceof MorphToManyJoin) {
+                    $relatedKey = $relatedRelation->getQualifiedRelatedPivotKeyName();
+                    $relatedKey = last(explode('.', $relatedKey));
+                    $foreignKey = $relatedRelation->getQualifiedForeignPivotKeyName();
+                    $foreignKey = last(explode('.', $foreignKey));
+                    $morphType = $relatedRelation->getMorphType();
+                    $morphClass = $relatedRelation->getMorphClass();
+                    $parentKey = $relatedRelation->getParentKeyName();
+                    $intermediateTableAlias = $relatedRelation->getTable();
+                    $joinIntermediateQuery = $intermediateTableAlias;
+
+                    $this->$joinMethod($joinIntermediateQuery, function ($join) use (
+                        $relatedRelation, $relatedTableAlias, $intermediateTableAlias, $currentTableAlias,
+                        $relatedKey, $foreignKey, $parentKey, $morphType, $morphClass
+                    ) {
+                        $join->on($intermediateTableAlias.'.'.$foreignKey, '=', $currentTableAlias.'.'.$parentKey)
+                             ->where($intermediateTableAlias.'.'.$morphType, $morphClass);
+
+                        $this->joinQuery($join, $relatedRelation, $intermediateTableAlias);
+                    })->$joinMethod($joinQuery, function ($join) use (
+                        $relatedRelation, $relatedTableAlias, $intermediateTableAlias, $currentTableAlias,
+                        $relatedKey, $foreignKey, $parentKey, $morphType, $morphClass
+                    ) {
+                        $join->on($relatedTableAlias.'.'.$parentKey, '=', $intermediateTableAlias.'.'.$parentKey);
 
                         $this->joinQuery($join, $relatedRelation, $relatedTableAlias);
                     });

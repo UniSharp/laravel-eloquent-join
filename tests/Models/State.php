@@ -16,4 +16,14 @@ class State extends BaseModel
     {
         return $this->hasMany(City::class);
     }
+
+    public function categories()
+    {
+        return $this->morphToMany(Category::class, 'categorizable', 'categorizable');
+    }
+
+    public function images()
+    {
+        return $this->morphMany(Image::class, 'imageable');
+    }
 }
