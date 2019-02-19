@@ -1,6 +1,6 @@
 <?php
 
-namespace Fico7489\Laravel\EloquentJoin\Tests\Models;
+namespace UniSharp\Laravel\EloquentJoin\Tests\Models;
 
 class Category extends BaseModel
 {

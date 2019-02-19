@@ -1,10 +1,10 @@
 <?php
 
-namespace Fico7489\Laravel\EloquentJoin\Tests\Tests\Clauses;
+namespace UniSharp\Laravel\EloquentJoin\Tests\Tests\Clauses;
 
-use Fico7489\Laravel\EloquentJoin\EloquentJoinBuilder;
-use Fico7489\Laravel\EloquentJoin\Tests\Models\Order;
-use Fico7489\Laravel\EloquentJoin\Tests\TestCase;
+use UniSharp\Laravel\EloquentJoin\EloquentJoinBuilder;
+use UniSharp\Laravel\EloquentJoin\Tests\Models\Order;
+use UniSharp\Laravel\EloquentJoin\Tests\TestCase;
 
 class AggregateJoinTest extends TestCase
 {

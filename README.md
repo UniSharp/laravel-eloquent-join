@@ -81,11 +81,11 @@ composer require fico7489/laravel-eloquent-join
 ```
 With this statement, a composer will install highest available package version for your current laravel version.
 
-2.Use Fico7489\Laravel\EloquentJoin\Traits\EloquentJoinTrait trait in your base model or only in particular models.
+2.Use UniSharp\Laravel\EloquentJoin\Traits\EloquentJoinTrait trait in your base model or only in particular models.
 
 ```
 ...
-use Fico7489\Laravel\EloquentJoin\Traits\EloquentJoin;
+use UniSharp\Laravel\EloquentJoin\Traits\EloquentJoin;
 use Illuminate\Database\Eloquent\Model;
 
 abstract class BaseModel extends Model

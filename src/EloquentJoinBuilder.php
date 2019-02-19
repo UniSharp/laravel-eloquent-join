@@ -1,19 +1,19 @@
 <?php
 
-namespace Fico7489\Laravel\EloquentJoin;
+namespace UniSharp\Laravel\EloquentJoin;
 
-use Fico7489\Laravel\EloquentJoin\Exceptions\InvalidAggregateMethod;
-use Fico7489\Laravel\EloquentJoin\Exceptions\InvalidRelation;
-use Fico7489\Laravel\EloquentJoin\Exceptions\InvalidRelationClause;
-use Fico7489\Laravel\EloquentJoin\Exceptions\InvalidRelationGlobalScope;
-use Fico7489\Laravel\EloquentJoin\Exceptions\InvalidRelationWhere;
-use Fico7489\Laravel\EloquentJoin\Relations\MorphManyJoin;
-use Fico7489\Laravel\EloquentJoin\Relations\MorphToJoin;
-use Fico7489\Laravel\EloquentJoin\Relations\MorphToManyJoin;
+use UniSharp\Laravel\EloquentJoin\Exceptions\InvalidAggregateMethod;
+use UniSharp\Laravel\EloquentJoin\Exceptions\InvalidRelation;
+use UniSharp\Laravel\EloquentJoin\Exceptions\InvalidRelationClause;
+use UniSharp\Laravel\EloquentJoin\Exceptions\InvalidRelationGlobalScope;
+use UniSharp\Laravel\EloquentJoin\Exceptions\InvalidRelationWhere;
+use UniSharp\Laravel\EloquentJoin\Relations\MorphManyJoin;
+use UniSharp\Laravel\EloquentJoin\Relations\MorphToJoin;
+use UniSharp\Laravel\EloquentJoin\Relations\MorphToManyJoin;
 use Illuminate\Database\Eloquent\Builder;
-use Fico7489\Laravel\EloquentJoin\Relations\BelongsToJoin;
-use Fico7489\Laravel\EloquentJoin\Relations\HasOneJoin;
-use Fico7489\Laravel\EloquentJoin\Relations\HasManyJoin;
+use UniSharp\Laravel\EloquentJoin\Relations\BelongsToJoin;
+use UniSharp\Laravel\EloquentJoin\Relations\HasOneJoin;
+use UniSharp\Laravel\EloquentJoin\Relations\HasManyJoin;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Illuminate\Database\Query\JoinClause;

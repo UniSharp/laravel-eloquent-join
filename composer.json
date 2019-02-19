@@ -1,5 +1,5 @@
 {
-    "name": "fico7489/laravel-eloquent-join",
+    "name": "unisharp/laravel-eloquent-join",
     "description": "This package introduces the join magic for eloquent models and relations.",
     "keywords": [
         "laravel join",
@@ -8,11 +8,6 @@
         "laravel where join",
         "laravel join relation"
     ],
-    "homepage": "https://github.com/fico7489/laravel-eloquent-join",
-    "support": {
-        "issues": "https://github.com/fico7489/laravel-eloquent-join/issues",
-        "source": "https://github.com/fico7489/laravel-eloquent-join"
-    },
     "license": "MIT",
     "authors": [
         {
@@ -20,6 +15,10 @@
             "email": "filip.horvat@am2studio.hr",
             "homepage": "http://am2studio.hr",
             "role": "Developer"
+        },
+        {
+            "name": "UniSharp Ltd.",
+            "email": "opensource@unisharp.com"
         }
     ],
     "require": {
@@ -31,12 +30,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Fico7489\\Laravel\\EloquentJoin\\": "src"
+            "UniSharp\\Laravel\\EloquentJoin\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Fico7489\\Laravel\\EloquentJoin\\Tests\\": "tests/"
+            "UniSharp\\Laravel\\EloquentJoin\\Tests\\": "tests/"
         }
     },
     "minimum-stability": "dev",

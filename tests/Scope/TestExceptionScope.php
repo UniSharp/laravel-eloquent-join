@@ -1,6 +1,6 @@
 <?php
 
-namespace Fico7489\Laravel\EloquentJoin\Tests\Scope;
+namespace UniSharp\Laravel\EloquentJoin\Tests\Scope;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;

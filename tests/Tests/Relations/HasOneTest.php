@@ -1,9 +1,9 @@
 <?php
 
-namespace Fico7489\Laravel\EloquentJoin\Tests\Tests\Relations;
+namespace UniSharp\Laravel\EloquentJoin\Tests\Tests\Relations;
 
-use Fico7489\Laravel\EloquentJoin\Tests\Models\Seller;
-use Fico7489\Laravel\EloquentJoin\Tests\TestCase;
+use UniSharp\Laravel\EloquentJoin\Tests\Models\Seller;
+use UniSharp\Laravel\EloquentJoin\Tests\TestCase;
 
 class HasOneTest extends TestCase
 {

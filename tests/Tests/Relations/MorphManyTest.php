@@ -1,10 +1,10 @@
 <?php
 
-namespace Fico7489\Laravel\EloquentJoin\Tests\Tests\Relations;
+namespace UniSharp\Laravel\EloquentJoin\Tests\Tests\Relations;
 
-use Fico7489\Laravel\EloquentJoin\Tests\Models\Image;
-use Fico7489\Laravel\EloquentJoin\Tests\Models\State;
-use Fico7489\Laravel\EloquentJoin\Tests\TestCase;
+use UniSharp\Laravel\EloquentJoin\Tests\Models\Image;
+use UniSharp\Laravel\EloquentJoin\Tests\Models\State;
+use UniSharp\Laravel\EloquentJoin\Tests\TestCase;
 
 class MorphManyTest extends TestCase
 {

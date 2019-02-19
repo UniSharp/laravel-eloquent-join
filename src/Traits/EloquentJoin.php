@@ -1,8 +1,8 @@
 <?php
 
-namespace Fico7489\Laravel\EloquentJoin\Traits;
+namespace UniSharp\Laravel\EloquentJoin\Traits;
 
-use Fico7489\Laravel\EloquentJoin\EloquentJoinBuilder;
+use UniSharp\Laravel\EloquentJoin\EloquentJoinBuilder;
 
 trait EloquentJoin
 {

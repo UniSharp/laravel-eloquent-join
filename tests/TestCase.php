@@ -1,11 +1,11 @@
 <?php
 
-namespace Fico7489\Laravel\EloquentJoin\Tests;
+namespace UniSharp\Laravel\EloquentJoin\Tests;
 
-use Fico7489\Laravel\EloquentJoin\Tests\Models\Seller;
-use Fico7489\Laravel\EloquentJoin\Tests\Models\Order;
-use Fico7489\Laravel\EloquentJoin\Tests\Models\OrderItem;
-use Fico7489\Laravel\EloquentJoin\Tests\Models\Location;
+use UniSharp\Laravel\EloquentJoin\Tests\Models\Seller;
+use UniSharp\Laravel\EloquentJoin\Tests\Models\Order;
+use UniSharp\Laravel\EloquentJoin\Tests\Models\OrderItem;
+use UniSharp\Laravel\EloquentJoin\Tests\Models\Location;
 
 abstract class TestCase extends \Orchestra\Testbench\TestCase
 {

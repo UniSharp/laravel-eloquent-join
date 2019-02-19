@@ -1,13 +1,13 @@
 <?php
 
-namespace Fico7489\Laravel\EloquentJoin\Traits;
+namespace UniSharp\Laravel\EloquentJoin\Traits;
 
-use Fico7489\Laravel\EloquentJoin\Relations\BelongsToJoin;
-use Fico7489\Laravel\EloquentJoin\Relations\HasManyJoin;
-use Fico7489\Laravel\EloquentJoin\Relations\HasOneJoin;
-use Fico7489\Laravel\EloquentJoin\Relations\MorphManyJoin;
-use Fico7489\Laravel\EloquentJoin\Relations\MorphToJoin;
-use Fico7489\Laravel\EloquentJoin\Relations\MorphToManyJoin;
+use UniSharp\Laravel\EloquentJoin\Relations\BelongsToJoin;
+use UniSharp\Laravel\EloquentJoin\Relations\HasManyJoin;
+use UniSharp\Laravel\EloquentJoin\Relations\HasOneJoin;
+use UniSharp\Laravel\EloquentJoin\Relations\MorphManyJoin;
+use UniSharp\Laravel\EloquentJoin\Relations\MorphToJoin;
+use UniSharp\Laravel\EloquentJoin\Relations\MorphToManyJoin;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 
