@@ -14,8 +14,6 @@ class HasOneTest extends TestCase
         $queryTest = 'select sellers.* 
             from "sellers" 
             left join "locations" on "locations"."seller_id" = "sellers"."id" 
-            and "locations"."is_primary" = ? 
-            and "locations"."is_secondary" = ? 
             and "locations"."deleted_at" is null 
             group by "sellers"."id"';
 
@@ -28,8 +26,6 @@ class HasOneTest extends TestCase
 
         $queryTest = 'select sellers.* 
             from "sellers" left join "locations" on "locations"."seller_id" = "sellers"."id" 
-            and "locations"."is_primary" = ?
-            and "locations"."is_secondary" = ? 
             and "locations"."deleted_at" is null 
             left join "cities" on "cities"."id" = "locations"."city_id" 
             and "cities"."deleted_at" is null 
@@ -45,8 +41,6 @@ class HasOneTest extends TestCase
         $queryTest = 'select sellers.* 
             from "sellers" 
             left join "locations" on "locations"."seller_id" = "sellers"."id" 
-            and "locations"."is_primary" = ?
-            and "locations"."is_secondary" = ? 
             and "locations"."deleted_at" is null 
             left join "integrations" on "integrations"."location_id" = "locations"."id"
             and "integrations"."deleted_at" is null 

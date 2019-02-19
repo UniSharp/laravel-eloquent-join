@@ -2,6 +2,11 @@
 
 namespace UniSharp\Laravel\EloquentJoin;
 
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use UniSharp\Laravel\EloquentJoin\Exceptions\InvalidAggregateMethod;
 use UniSharp\Laravel\EloquentJoin\Exceptions\InvalidRelation;
 use UniSharp\Laravel\EloquentJoin\Exceptions\InvalidRelationClause;
@@ -193,7 +198,7 @@ class EloquentJoinBuilder extends Builder
 
             if (!in_array($relationAccumulatedString, $this->joinedTables)) {
                 $joinQuery = $relatedTable.($this->useTableAlias ? ' as '.$relatedTableAlias : '');
-                if ($relatedRelation instanceof BelongsToJoin) {
+                if ($relatedRelation instanceof BelongsTo) {
                     $relatedKey = $relatedRelation->getQualifiedForeignKey();
                     $relatedKey = last(explode('.', $relatedKey));
                     $ownerKey = $relatedRelation->getOwnerKey();
@@ -203,7 +208,7 @@ class EloquentJoinBuilder extends Builder
 
                         $this->joinQuery($join, $relatedRelation, $relatedTableAlias);
                     });
-                } elseif ($relatedRelation instanceof HasOneJoin || $relatedRelation instanceof HasManyJoin) {
+                } elseif ($relatedRelation instanceof HasOne || $relatedRelation instanceof HasMany) {
                     $relatedKey = $relatedRelation->getQualifiedForeignKeyName();
                     $relatedKey = last(explode('.', $relatedKey));
                     $localKey = $relatedRelation->getQualifiedParentKeyName();
@@ -214,7 +219,7 @@ class EloquentJoinBuilder extends Builder
 
                         $this->joinQuery($join, $relatedRelation, $relatedTableAlias);
                     });
-                } elseif ($relatedRelation instanceof MorphManyJoin) {
+                } elseif ($relatedRelation instanceof MorphMany) {
                     $relatedKey = $relatedRelation->getQualifiedForeignKeyName();
                     $relatedKey = last(explode('.', $relatedKey));
                     $localKey = $relatedRelation->getQualifiedParentKeyName();
@@ -228,7 +233,7 @@ class EloquentJoinBuilder extends Builder
 
                         $this->joinQuery($join, $relatedRelation, $relatedTableAlias);
                     });
-                } elseif ($relatedRelation instanceof MorphToManyJoin) {
+                } elseif ($relatedRelation instanceof MorphToMany) {
                     $relatedKey = $relatedRelation->getQualifiedRelatedPivotKeyName();
                     $relatedKey = last(explode('.', $relatedKey));
                     $foreignKey = $relatedRelation->getQualifiedForeignPivotKeyName();

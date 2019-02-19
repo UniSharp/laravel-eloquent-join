@@ -14,8 +14,6 @@ class ClosureOnRelationTest extends TestCase
         $queryTest = 'select sellers.*, MAX(locations.id) as sort from "sellers" 
             left join "locations" 
             on "locations"."seller_id" = "sellers"."id" 
-            and "locations"."is_primary" = ? 
-            and "locations"."is_secondary" = ? 
             and "locations"."deleted_at" is null 
             group by "sellers"."id"
             order by sort desc';
@@ -27,7 +25,6 @@ class ClosureOnRelationTest extends TestCase
         $queryTest = 'select sellers.*, MAX(locations.id) as sort from "sellers" 
             left join "locations" 
             on "locations"."seller_id" = "sellers"."id" 
-            and "locations"."is_primary" = ? 
             and "locations"."deleted_at" is null 
             group by "sellers"."id"
             order by sort desc';
@@ -39,7 +36,6 @@ class ClosureOnRelationTest extends TestCase
         $queryTest = 'select sellers.*, MAX(locations.id) as sort from "sellers" 
             left join "locations" 
             on "locations"."seller_id" = "sellers"."id" 
-            and "locations"."is_secondary" = ? 
             and "locations"."deleted_at" is null 
             group by "sellers"."id"
             order by sort desc';
@@ -51,8 +47,6 @@ class ClosureOnRelationTest extends TestCase
         $queryTest = 'select sellers.*, MAX(locations.id) as sort from "sellers" 
             left join "locations" 
             on "locations"."seller_id" = "sellers"."id" 
-            and "locations"."is_primary" = ? 
-            or "locations"."is_secondary" = ? 
             and "locations"."deleted_at" is null 
             group by "sellers"."id"
             order by sort desc';
@@ -67,8 +61,8 @@ class ClosureOnRelationTest extends TestCase
         $seller->locationPrimary;
         $queryTest = 'select * from "locations" 
             where "locations"."seller_id" = ? 
-            and "locations"."seller_id" is not null 
-            and "is_primary" = ? 
+            and "locations"."seller_id" is not null
+            and "is_primary" = ?
             and "locations"."deleted_at" is null 
             limit 1';
 

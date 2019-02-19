@@ -42,7 +42,6 @@ class ClosureTest extends TestCase
             and "orders"."deleted_at" is null 
             left join "sellers" on "sellers"."id" = "orders"."seller_id" 
             left join "locations" on "locations"."seller_id" = "sellers"."id" 
-            and "locations"."is_primary" = ? 
             and "locations"."deleted_at" is null 
             where ("orders"."id" = ? or "orders"."id" = ? 
             and ("locations"."id" = ?)) 

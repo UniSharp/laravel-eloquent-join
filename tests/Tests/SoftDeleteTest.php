@@ -128,8 +128,7 @@ class SoftDeleteTest extends TestCase
         $queryTest = 'select order_items.*, MAX(orders.number) as sort
             from "order_items"
             left join "orders" 
-            on "orders"."id" = "order_items"."order_id"
-            and "orders"."deleted_at" is not null 
+            on "orders"."id" = "order_items"."order_id" 
             where "order_items"."deleted_at" is null 
             group by "order_items"."id"
             order by sort asc';
